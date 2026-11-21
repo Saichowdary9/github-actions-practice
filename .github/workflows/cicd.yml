@@ -1,30 +1,37 @@
-name: CICD
+
+name: CI-CD
 
 on:
   workflow_dispatch:
-  jobs:
-    code:
-     steps:
-      - name : Pulling the code
-        run: echo "code is pulling"
-     Build:
-        need: code
-        steps:
-          - name: Building the code
-            run: echo "Code Build is happening"
-     Test:
-       need: build
-       steps:
-         - name: Testing the code
-           run: echo "Testing the code"
-    Deploy:
-       need: [build,test
-       steps:
-          - name: Deploy the code 
-            run: echo "Deploying the code"
-             
-    
-     
-    
-   
-      
+
+jobs:
+  code:
+    name: Pulling the code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pulling the code
+        run: echo "Code is pulling"
+
+  build:
+    name: Building the code
+    needs: code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Building the code
+        run: echo "Code Build is happening"
+
+  test:
+    name: Testing the code
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing the code
+        run: echo "Testing the code"
+
+  deploy:
+    name: Deploying the code
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the code
+        run: echo "Deploying the code"
