@@ -2,27 +2,26 @@ name: CICD
 
 on:
   workflow_dispatch:
-
-jobs:
-   code:
+  jobs:
+    code:
      steps:
       - name : Pulling the code
         run: echo "code is pulling"
-    Build:
+     Build:
         need: code
         steps:
-        - name: Building the code
-          run: echo " Code Build is happening:
-    Test:
+          - name: Building the code
+            run: echo "Code Build is happening:
+     Test:
        need: build
        steps:
          - name: Testing the code
            run: echo "Testing the code"
-   Deploy:
-        need: [build,test
-        steps:
-           - name: Deploy the code 
-             run: echo "Deploying the code"
+    Deploy:
+       need: [build,test
+       steps:
+          - name: Deploy the code 
+            run: echo "Deploying the code"
              
     
      
