@@ -1,0 +1,23 @@
+name: CI
+
+on: 
+ push:
+  branches: [main]
+
+jobs:
+  code:
+     runs-on: ubuntu-latest
+     steps:
+        - name: Checkout Code
+          uses: actions/checkout@v7
+          
+        - name: Docker Login
+          uses: docker/login-actions@v4
+          with:
+            username: ${{ vars.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+        - name: Docker Build 
+          uses: 
+       
+    
